@@ -1,0 +1,116 @@
+:root {
+    --primary: #f06292;
+    --dark-primary: #d81b60;
+    --flap-color: #f48fb1;
+    --bg: #fce4ec;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bg);
+    margin: 0;
+    overflow: hidden;
+}
+
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: var(--primary);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid var(--flap-color);
+    transform-origin: top;
+    transition: transform 0.4s ease-in-out;
+    z-index: 3; /* Flap is on top when closed */
+}
+
+.front-pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 100px solid var(--dark-primary);
+    z-index: 4; /* Pocket is always on very top to hide the letter */
+}
+
+/* Side triangles to complete the envelope look */
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid var(--primary);
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    z-index: 2;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-right: 150px solid var(--primary);
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    z-index: 2;
+}
+
+.letter {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 280px;
+    height: 180px;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.6s ease-in-out;
+    z-index: 1; /* Letter is behind everything when closed */
+}
+
+.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0; /* Flap moves behind when open */
+}
+
+.open .letter {
+    transform: translateY(-120px);
+    z-index: 5; /* Letter pops to the very front when open */
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 2s linear forwards;
+    z-index: 6;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+}
