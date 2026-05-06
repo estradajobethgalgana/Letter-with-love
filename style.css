@@ -38,7 +38,7 @@ body {
     border-top: 100px solid var(--flap-color);
     transform-origin: top;
     transition: transform 0.4s ease-in-out;
-    z-index: 3; /* Flap is on top when closed */
+    z-index: 3; 
 }
 
 .front-pocket {
@@ -50,10 +50,10 @@ body {
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
     border-bottom: 100px solid var(--dark-primary);
-    z-index: 4; /* Pocket is always on very top to hide the letter */
+    z-index: 4; 
 }
 
-/* Side triangles to complete the envelope look */
+
 .envelope::before {
     content: "";
     position: absolute;
@@ -90,17 +90,17 @@ body {
     padding: 20px;
     box-sizing: border-box;
     transition: transform 0.6s ease-in-out;
-    z-index: 1; /* Letter is behind everything when closed */
+    z-index: 1;
 }
 
 .open .flap {
     transform: rotateX(180deg);
-    z-index: 0; /* Flap moves behind when open */
+    z-index: 0; 
 }
 
 .open .letter {
     transform: translateY(-120px);
-    z-index: 5; /* Letter pops to the very front when open */
+    z-index: 5; 
 }
 
 .heart {
